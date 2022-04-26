@@ -1,0 +1,159 @@
+{
+	"info": {
+		"_postman_id": "35186327-f48b-4229-919d-844c6a28a544",
+		"name": "express",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "取得",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\":\"3\",\r\n    \"tags\":\"123456gg\",\r\n    \"type\":\"person\",\r\n    \"content\":\"123456\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://gentle-ocean-67422.herokuapp.com/posts",
+					"protocol": "https",
+					"host": [
+						"gentle-ocean-67422",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"posts"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "新增",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\":\"3\",\r\n    \"tags\":\"123456gg\",\r\n    \"type\":\"person\",\r\n    \"content\":\"123456\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://gentle-ocean-67422.herokuapp.com/posts",
+					"protocol": "https",
+					"host": [
+						"gentle-ocean-67422",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"posts"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "刪除",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\":\"3\",\r\n    \"tags\":\"123456gg\",\r\n    \"type\":\"person\",\r\n    \"content\":\"123456\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://gentle-ocean-67422.herokuapp.com/posts",
+					"protocol": "https",
+					"host": [
+						"gentle-ocean-67422",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"posts"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "刪除個別",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\":\"3\",\r\n    \"tags\":\"123456gg\",\r\n    \"type\":\"person\",\r\n    \"content\":\"123456\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://gentle-ocean-67422.herokuapp.com/posts/626821855becaae037e83d6c",
+					"protocol": "https",
+					"host": [
+						"gentle-ocean-67422",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"posts",
+						"626821855becaae037e83d6c"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "修改",
+			"request": {
+				"method": "PATCH",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\":\"3\",\r\n    \"tags\":\"123456gg\",\r\n    \"type\":\"person\",\r\n    \"content\":\"00\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://gentle-ocean-67422.herokuapp.com/posts/6268211a5becaae037e83d68",
+					"protocol": "https",
+					"host": [
+						"gentle-ocean-67422",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"posts",
+						"6268211a5becaae037e83d68"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
