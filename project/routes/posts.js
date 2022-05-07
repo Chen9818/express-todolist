@@ -3,6 +3,7 @@ const handleError = require('../handle/handleError');
 const handleSuccess = require('../handle/handleSuccess');
 var router = express.Router();
 const Post = require('../model/postModel')
+const User = require('../model/usersModel')
 
 /* GET home page. */
 router.get('/',async function(req, res, next) {

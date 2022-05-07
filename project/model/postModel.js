@@ -1,8 +1,9 @@
 //建立schema
 const mongoose = require('mongoose')
 const postsSchema = new mongoose.Schema({
-    name: {
-        type: String,
+    user: {
+        type: mongoose.Schema.ObjectId,
+        ref: "user",
         required: [true, '貼文姓名未填寫']
     },
     tags:{
@@ -38,7 +39,7 @@ const postsSchema = new mongoose.Schema({
 })
 
 const posts = mongoose.model(
-    'rooms', //collection
+    'posts', //collection
     postsSchema
 )
 
