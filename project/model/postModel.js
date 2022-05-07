@@ -2,7 +2,7 @@
 const mongoose = require('mongoose')
 const postsSchema = new mongoose.Schema({
     user: {
-        type: mongoose.Schema.ObjectId,
+        type: String,
         ref: "user",
         required: [true, '貼文姓名未填寫']
     },
