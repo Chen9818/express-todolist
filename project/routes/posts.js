@@ -15,7 +15,7 @@ router.post('/',async function(req, res, next) {
     try{
         const data = req.body
         const post = await Post.create({
-            name: data.name,
+            user: data.user,
             tags:data.tags,
             type: data.type,
             content:data.content
