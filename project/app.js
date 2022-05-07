@@ -36,5 +36,11 @@ app.use(cors())
 // app.use('/', indexRouter);
 // app.use('/users', usersRouter);
 app.use('/posts', postsRouter);
+app.use((req, res, next) => {
+	res.status(404).json({
+		status: 'ERROR',
+		message: '找不到網頁 404 Not Found，請重新確認'
+	});
+});
 
 module.exports = app;
