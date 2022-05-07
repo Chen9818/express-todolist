@@ -21,8 +21,8 @@ mongoose.connect(DB)
         console.log(error)
     })
 
-var indexRouter = require('./routes/index');
-var usersRouter = require('./routes/users');
+// var indexRouter = require('./routes/index');
+// var usersRouter = require('./routes/users');
 var postsRouter = require('./routes/posts');
 
 var app = express();
@@ -33,8 +33,8 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(cors())
-app.use('/', indexRouter);
-app.use('/users', usersRouter);
+// app.use('/', indexRouter);
+// app.use('/users', usersRouter);
 app.use('/posts', postsRouter);
 
 module.exports = app;
