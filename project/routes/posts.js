@@ -13,6 +13,7 @@ router.get('/',async function(req, res, next) {
         path:"user",  //找到user collection
         select:"name photo"  //顯示name和photo
     })
+	.sort(timeSort)
     handleSuccess(res,post)
 });
 
