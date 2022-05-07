@@ -4,7 +4,7 @@ const postsSchema = new mongoose.Schema({
     user: {
         type: mongoose.Schema.ObjectId,
         ref: 'user',
-        // required: [true, '貼文姓名未填寫']
+        required: [true, '貼文id未填寫']
     },
     // tags:{
     //     type: String,
