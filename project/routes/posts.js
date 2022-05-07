@@ -7,7 +7,10 @@ const User = require('../model/usersModel')
 
 /* GET home page. */
 router.get('/',async function(req, res, next) {
-    const post = await Post.find()
+    const post = await Post.find().populate({
+        path:"user",  //找到user collection
+        select:"name photo"  //顯示name和photo
+    })
     handleSuccess(res,post)
 });
 
