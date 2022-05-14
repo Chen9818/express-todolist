@@ -4,6 +4,8 @@ const handleSuccess = require('../handle/handleSuccess');
 var router = express.Router();
 const Post = require('../model/postModel')
 const User = require('../model/usersModel')
+const appError = require("../service/appError");
+const handleErrorAsync = require("../service/handleErrorAsync");
 
 /* GET home page. */
 router.get('/',async function(req, res, next) {
@@ -17,8 +19,10 @@ router.get('/',async function(req, res, next) {
     handleSuccess(res,post)
 });
 
-router.post('/',async function(req, res, next) {
-    try{
+router.post('/',handleErrorAsync(async function(req, res, next) {
+    if(req.body.content == undefined){
+        return next(appError(400,"你沒有填寫 content 資料",next))
+    }else{
         const data = req.body
         const post = await Post.create({
             user: data.user,
@@ -28,30 +32,34 @@ router.post('/',async function(req, res, next) {
         })
         // console.log(req.body)
         handleSuccess(res,post)
-    }catch(err){
-        handleError(res,err)
     }
-});
+}));
 
-router.delete('/',async function(req, res, next) {
+router.delete('/posts',async function(req, res, next) {
     const post = await Post.deleteMany({})
     handleSuccess(res, post)
 });
 
-router.delete('/:id',async function(req, res, next) {
-    console.log(req.params.id);
+router.delete('/post/:id',async function(req, res, next) {
+    // console.log(req.params.id);
     const id = req.params.id
-    try{
+    if(id == undefined){
+        return next(appError(400,"無此使用者ID",next))
+    }else{
         const post = await Post.findByIdAndDelete(id)
-        handleSuccess(res, post)
-    }catch(err){
-        handleError(res,err)
+        if (post !== null){
+            handleSuccess(res,post)
+        } else {
+            return next(appError(400,"無此使用者ID",next))     
+        }
     }
 });
 
 router.patch('/:id',async function(req, res, next) {
-    try{
-        const id = req.params.id
+    const id = req.params.id
+    if(id == undefined){
+        return next(appError(400,"無此使用者ID",next))
+    }else{
         const body = req.body.content
         const post = await Post.findByIdAndUpdate(id,{
             content:body
@@ -59,11 +67,23 @@ router.patch('/:id',async function(req, res, next) {
         if (body !== undefined && post !== null){
             handleSuccess(res,post)
         } else {
-            handleError(res,err)
+            return next(appError(400,"無此使用者ID",next))
         }
-    }catch(err){
-        handleError(res,err)
     }
+    // try{
+    //     const id = req.params.id
+    //     const body = req.body.content
+    //     const post = await Post.findByIdAndUpdate(id,{
+    //         content:body
+    //     })
+    //     if (body !== undefined && post !== null){
+    //         handleSuccess(res,post)
+    //     } else {
+    //         handleError(res,err)
+    //     }
+    // }catch(err){
+    //     handleError(res,err)
+    // }
 });
 
 module.exports = router;
