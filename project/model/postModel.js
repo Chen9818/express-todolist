@@ -42,7 +42,7 @@ const postsSchema = new mongoose.Schema({
 })
 
 const posts = mongoose.model(
-    'user', //collection
+    'post', //collection
     postsSchema
 )
 
