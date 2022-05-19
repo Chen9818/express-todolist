@@ -15,7 +15,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"name\":\"3\",\r\n    \"tags\":\"123456gg\",\r\n    \"type\":\"person\",\r\n    \"content\":\"123456\"\r\n}",
+					"raw": "",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -44,7 +44,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"name\":\"3\",\r\n    \"tags\":\"123456gg\",\r\n    \"type\":\"person\",\r\n    \"content\":\"123456\"\r\n}",
+					"raw": "{\r\n    \"user\":\"62863842801cac050c6873bd\",\r\n    \"content\":\"hello\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
