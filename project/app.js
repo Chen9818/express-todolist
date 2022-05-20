@@ -21,8 +21,8 @@ mongoose.connect(DB)
         console.log(error)
     })
 
-// var indexRouter = require('./routes/index');
-// var usersRouter = require('./routes/users');
+var indexRouter = require('./routes/index');
+var usersRouter = require('./routes/users');
 var postsRouter = require('./routes/posts');
 
 var app = express();
@@ -33,8 +33,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(cors())
-// app.use('/', indexRouter);
-// app.use('/users', usersRouter);
+
 
 // 程式出現重大錯誤時
 process.on('uncaughtException', err => {
@@ -43,6 +42,10 @@ process.on('uncaughtException', err => {
     console.error(err);
     process.exit(1);
 });
+
+app.use('/a', indexRouter);
+app.use('/users', usersRouter);
+
 //404錯誤
 app.use('/posts', postsRouter);
 app.use((req, res, next) => {

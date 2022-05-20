@@ -35,7 +35,7 @@ router.post('/',handleErrorAsync(async function(req, res, next) {
     }
 }));
 
-router.delete('/posts',async function(req, res, next) {
+router.delete('/',async function(req, res, next) {
     const post = await Post.deleteMany({})
     handleSuccess(res, post)
 });
