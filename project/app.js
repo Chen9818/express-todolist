@@ -43,7 +43,7 @@ process.on('uncaughtException', err => {
     process.exit(1);
 });
 
-app.use('/a', indexRouter);
+app.use('/', indexRouter);
 app.use('/users', usersRouter);
 
 //404錯誤
