@@ -1,3 +1,8 @@
+const jwt = require('jsonwebtoken');
+const validator = require('validator');
+const bcrypt = require('bcryptjs');
+const {isAuth,generateSendJWT} = require('../service/auth');
+
 var express = require('express');
 const handleError = require('../handle/handleError');
 const handleSuccess = require('../handle/handleSuccess');
@@ -7,83 +12,69 @@ const User = require('../model/usersModel')
 const appError = require("../service/appError");
 const handleErrorAsync = require("../service/handleErrorAsync");
 
-/* GET home page. */
-router.get('/',async function(req, res, next) {
-	const timeSort = req.query.timeSort == 'asc' ? 'createdAt' : '-createdAt'
-	const q = req.query.q !== undefined ? { "content": new RegExp(req.query.q) } : {}
-    const post = await Post.find(q).populate({
-        path:"user",  //找到user collection
-        select:"name photo"  //顯示name和photo
-    })
-	.sort(timeSort)
-    handleSuccess(res,post)
-});
 
-router.post('/',handleErrorAsync(async function(req, res, next) {
-    if(req.body.content == undefined){
-        return next(appError(400,"你沒有填寫 content 資料",next))
-    }else{
-        const data = req.body
-        const post = await Post.create({
-            user: data.user,
-            tags:data.tags,
-            type: data.type,
-            content:data.content
-        })
-        // console.log(req.body)
-        handleSuccess(res,post)
-    }
-}));
+router.post('/sign_up', handleErrorAsync(async(req, res, next) =>{
+  let { email, password,confirmPassword,name } = req.body;
+  // 內容不可為空
+  if(!email||!password||!confirmPassword||!name){
+    return next(appError("400","欄位未填寫正確！",next));
+  }
+  // 密碼正確
+  if(password!==confirmPassword){
+    return next(appError("400","密碼不一致！",next));
+  }
+  // 密碼 8 碼以上
+  if(!validator.isLength(password,{min:8})){
+    return next(appError("400","密碼字數低於 8 碼",next));
+  }
+  // 是否為 Email
+  if(!validator.isEmail(email)){
+    return next(appError("400","Email 格式不正確",next));
+  }
+  
+  // 加密密碼
+  password = await bcrypt.hash(req.body.password,12);
+  const newUser = await User.create({
+    email,
+    password,
+    name
+  });
+  generateSendJWT(newUser,201,res);
+}))
 
-router.delete('/',async function(req, res, next) {
-    const post = await Post.deleteMany({})
-    handleSuccess(res, post)
-});
+router.post('/sign_in',handleErrorAsync(async(req,res,next)=>{
+  const { email, password } = req.body;
+  if (!email || !password) {
+    return next(appError( 400,'帳號密碼不可為空',next));
+  }
+  const user = await User.findOne({ email }).select('+password');
+  const auth = await bcrypt.compare(password, user.password);
+  if(!auth){
+    return next(appError(400,'您的密碼不正確',next));
+  }
+  generateSendJWT(user,200,res);
+}))
 
-router.delete('/post/:id',async function(req, res, next) {
-    // console.log(req.params.id);
-    const id = req.params.id
-    if(id == undefined){
-        return next(appError(400,"無此使用者ID",next))
-    }else{
-        const post = await Post.findByIdAndDelete(id)
-        if (post !== null){
-            handleSuccess(res,post)
-        } else {
-            return next(appError(400,"無此使用者ID",next))     
-        }
-    }
-});
+router.get('/profile/',isAuth, handleErrorAsync(async(req, res, next) =>{
 
-router.patch('/:id',async function(req, res, next) {
-    const id = req.params.id
-    if(id == undefined){
-        return next(appError(400,"無此使用者ID",next))
-    }else{
-        const body = req.body.content
-        const post = await Post.findByIdAndUpdate(id,{
-            content:body
-        })
-        if (body !== undefined && post !== null){
-            handleSuccess(res,post)
-        } else {
-            return next(appError(400,"無此使用者ID",next))
-        }
-    }
-    // try{
-    //     const id = req.params.id
-    //     const body = req.body.content
-    //     const post = await Post.findByIdAndUpdate(id,{
-    //         content:body
-    //     })
-    //     if (body !== undefined && post !== null){
-    //         handleSuccess(res,post)
-    //     } else {
-    //         handleError(res,err)
-    //     }
-    // }catch(err){
-    //     handleError(res,err)
-    // }
-});
+  res.status(200).json({
+    status: 'success',
+    user: req.user
+  });
+}))
+
+router.post('/updatePassword',isAuth,handleErrorAsync(async(req,res,next)=>{
+  
+  const {password,confirmPassword } = req.body;
+  if(password!==confirmPassword){
+    return next(appError("400","密碼不一致！",next));
+  }
+  newPassword = await bcrypt.hash(password,12);
+  
+  const user = await User.findByIdAndUpdate(req.user.id,{
+    password:newPassword
+  });
+  generateSendJWT(user,200,res)
+}))
 
 module.exports = router;
