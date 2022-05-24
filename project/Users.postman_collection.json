@@ -1,0 +1,128 @@
+{
+	"info": {
+		"_postman_id": "cc0315db-f488-4dce-aa99-8fa5469f394b",
+		"name": "Users",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "17174815"
+	},
+	"item": [
+		{
+			"name": "註冊",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"email\":\"ww111ww@gamil.com\",\r\n    \"password\":\"a12345678\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://gentle-ocean-67422.herokuapp.com/users/sign_up",
+					"protocol": "https",
+					"host": [
+						"gentle-ocean-67422",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"users",
+						"sign_up"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "登入",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"email\":\"ww111ww@gamil.com\",\r\n    \"password\":\"a12345678\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://gentle-ocean-67422.herokuapp.com/users/sign_in",
+					"protocol": "https",
+					"host": [
+						"gentle-ocean-67422",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"users",
+						"sign_in"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "取得使用者資料",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyOGNkOTI3NWJiMjIzMDU1MTk3NWQ5ZiIsImlhdCI6MTY1MzM5Nzc5OSwiZXhwIjoxNjU0MDAyNTk5fQ.RABorteCAV6vb-0b8LOu9dY0T4GVsS-RQ8nR18cr4S4",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "https://gentle-ocean-67422.herokuapp.com/users/profile",
+					"protocol": "https",
+					"host": [
+						"gentle-ocean-67422",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"users",
+						"profile"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "更新密碼",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyOGNkOTI3NWJiMjIzMDU1MTk3NWQ5ZiIsImlhdCI6MTY1MzM5Nzc5OSwiZXhwIjoxNjU0MDAyNTk5fQ.RABorteCAV6vb-0b8LOu9dY0T4GVsS-RQ8nR18cr4S4",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"password\":\"a123456789\",\r\n    \"confirmPassword\":\"a123456789\"\r\n}"
+				},
+				"url": {
+					"raw": "https://gentle-ocean-67422.herokuapp.com/users/updatePassword",
+					"protocol": "https",
+					"host": [
+						"gentle-ocean-67422",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"users",
+						"updatePassword"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
