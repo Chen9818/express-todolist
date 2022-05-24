@@ -9,7 +9,7 @@ const handleErrorAsync = require("../service/handleErrorAsync");
 
 /* GET home page. */
 router.get('/',async function(req, res, next) {
-	const timeSort = req.query.timeSort == 'asc' ? 'createdAt' : '-createdAt'
+	const timeSort = req.query.timeSort == 'asc' ? 'createAt' : '-createAt'
 	const q = req.query.q !== undefined ? { "content": new RegExp(req.query.q) } : {}
     const post = await Post.find(q).populate({
         path:"user",  //找到user collection

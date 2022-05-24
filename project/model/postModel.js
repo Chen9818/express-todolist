@@ -41,9 +41,9 @@ const postsSchema = new mongoose.Schema({
     versionKey:false
 })
 
-const posts = mongoose.model(
+const Post = mongoose.model(
     'post', //collection
     postsSchema
 )
 
-module.exports = posts
+module.exports = Post
