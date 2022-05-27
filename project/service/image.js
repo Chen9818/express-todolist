@@ -4,7 +4,7 @@ const appError = require("../service/appError");
 const handleErrorAsync = require("../service/handleErrorAsync");
 const upload = multer({
     limits: {
-        fileSize: 2*1024*1024,
+        fileSize: 2*1024*1024, //照片檔案大小
     },
     fileFilter(req, file, cb) {
         const ext = path.extname(file.originalname).toLowerCase();
