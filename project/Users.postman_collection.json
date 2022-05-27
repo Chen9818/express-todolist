@@ -123,6 +123,42 @@
 				}
 			},
 			"response": []
+		},
+		{
+			"name": "上傳照片",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyOTBjOGNjMGQyZDVmYTVlY2RjN2FiZiIsInVzZXIiOiI1MjdkIiwiaWF0IjoxNjUzNjU1NzU2LCJleHAiOjE2NTU0NzAxNTZ9.55v4CwggxGYQma6fPKTfccXWny2L90sJ6pUSv1FRORM",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "",
+							"type": "file",
+							"src": "/C:/Users/chen/Desktop/IMAG0435.png"
+						}
+					]
+				},
+				"url": {
+					"raw": "https://gentle-ocean-67422.herokuapp.com/upload",
+					"protocol": "https",
+					"host": [
+						"gentle-ocean-67422",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"upload"
+					]
+				}
+			},
+			"response": []
 		}
 	]
 }
