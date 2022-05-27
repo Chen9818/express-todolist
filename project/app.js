@@ -24,6 +24,7 @@ mongoose.connect(DB)
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var postsRouter = require('./routes/posts');
+var uploadRouter = require('./routes/upload');
 
 var app = express();
 
@@ -45,6 +46,7 @@ process.on('uncaughtException', err => {
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
+app.use('/upload', uploadRouter)
 
 //404錯誤
 app.use('/posts', postsRouter);
