@@ -56,7 +56,7 @@ router.post('/sign_in',handleErrorAsync(async(req,res,next)=>{
 }))
 
 router.patch('/profile/',isAuth, handleErrorAsync(async(req, res, next) =>{
-  const user = req.user
+  const user = req.body
   const editProfile = await User.findByIdAndUpdate(
 		user._id,
 		{ ...user }
@@ -64,7 +64,7 @@ router.patch('/profile/',isAuth, handleErrorAsync(async(req, res, next) =>{
 
   res.status(200).json({
     status: 'success',
-    user: editProfile
+    user: user
   });
 }))
 
