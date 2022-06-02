@@ -55,8 +55,20 @@ router.post('/sign_in',handleErrorAsync(async(req,res,next)=>{
   generateSendJWT(user,200,res);
 }))
 
-router.get('/profile/',isAuth, handleErrorAsync(async(req, res, next) =>{
+router.patch('/profile/',isAuth, handleErrorAsync(async(req, res, next) =>{
+  const user = req.user
+  const editProfile = await User.findByIdAndUpdate(
+		user._id,
+		{ ...user }
+	);
 
+  res.status(200).json({
+    status: 'success',
+    user: editProfile
+  });
+}))
+
+router.get('/profile/',isAuth, handleErrorAsync(async(req, res, next) =>{
   res.status(200).json({
     status: 'success',
     user: req.user
