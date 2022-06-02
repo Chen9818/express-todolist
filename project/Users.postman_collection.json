@@ -159,6 +159,42 @@
 				}
 			},
 			"response": []
+		},
+		{
+			"name": "更新使用者資料",
+			"request": {
+				"method": "PATCH",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyOThiNjczMmUzMzcyMjE3ZmVhOWQ0MCIsInVzZXIiOiJkIiwiaWF0IjoxNjU0MTc1Mzc4LCJleHAiOjE2NTU5ODk3Nzh9._N8gaZ_CnNJ-waVNsVffbW0itgJDif__vtKNPD3Qti8",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\":\"abc\",\r\n    \"gender\":\"man\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://gentle-ocean-67422.herokuapp.com/users/profile",
+					"protocol": "https",
+					"host": [
+						"gentle-ocean-67422",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"users",
+						"profile"
+					]
+				}
+			},
+			"response": []
 		}
 	]
 }
