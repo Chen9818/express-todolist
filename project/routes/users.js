@@ -57,8 +57,9 @@ router.post('/sign_in',handleErrorAsync(async(req,res,next)=>{
 
 router.patch('/profile/',isAuth, handleErrorAsync(async(req, res, next) =>{
   const user = req.body
+  const id = req.user._id
   const editProfile = await User.findByIdAndUpdate(
-		user._id,
+		id,
 		{ ...user }
 	);
 
